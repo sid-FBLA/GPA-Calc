@@ -8,10 +8,10 @@ function askClass() {
       console.log(classGrades);
       var period = (i + 1).toString();
       console.log(period);
-      var newClass = prompt("Class " + period + " Difficulty(CP, HONORS OR AP *Type in caps*)"); 
+      var newClass = prompt("Class " + period + " Difficulty(CP, HONORS OR AP *Type in caps*)");
       classGrades[i][0] = newClass;
       var newClassGrade = prompt("What is your percentage in Class " + period);
-      classGrades[i][1] = newClassGrade;
+      classGrades[i][1] = newClassGrade.toUpperCase();
       classGrades[i][1] = parseInt(classGrades[i][1]);
       if (i === 6) {
         const value = prompt('Do you have more classes, if you do type YES, if not type NO');
@@ -62,10 +62,10 @@ const convertToLetter = classGrades.map(function(grade) {
     return letter;
   }
  });
-}); 
+});
 
 console.log(convertToLetter);
-
+console.log(convertToLetter[0][1])
 const APindex = new Array();
 const HONORSindex = new Array();
 const CPindex = new Array();
@@ -77,31 +77,31 @@ const classGPA = convertToLetter.map(function(subarray, index) {
     if (i === 0) {
       if(GPA.toUpperCase() == "AP") {
         APindex.push(index);
-        return GPA = "AP";
       } else if(GPA.toUpperCase() == "HONORS") {
         HONORSindex.push(index);
-        return GPA = "HONORS";
       } else if(GPA.toUpperCase() == "CP") {
         CPindex.push(index);
-        return GPA = "CP";
       }
     }
     if (i === 1) {
+      console.log(index);
+      console.log(APindex[index]);
       if(index = APindex[index]) {
+        console.log(convertToLetter[index][1]);
         if (convertToLetter[APindex[index]][1] === 'A') {
-          return GPA = 5.0;
+          return GPA = 5.00;
         } else if(convertToLetter[APindex[index]][1] === 'A-') {
           return GPA = 4.66;
         } else if(convertToLetter[APindex[index]][1] === 'B+') {
           return GPA = 4.33;
         } else if(convertToLetter[APindex[index]][1] === 'B') {
-          return GPA = 4.0;
+          return GPA = 4.00;
         } else if(convertToLetter[APindex[index]][1] === 'B-') {
           return GPA = 3.66;
         } else if(convertToLetter[APindex[index]][1] === 'C+') {
           return GPA = 3.33;
         } else if(convertToLetter[APindex[index]][1] === 'C') {
-          return GPA = 3.0;
+          return GPA = 3.00;
         } else if(convertToLetter[APindex[index]][1] === 'C-') {
           return GPA = 2.66;
         } else if(convertToLetter[APindex[index]][1] === 'D+') {
@@ -114,34 +114,64 @@ const classGPA = convertToLetter.map(function(subarray, index) {
           return GPA = 0;
         }
       }
-      if(index = APindex[index]) {
-        if (convertToLetter[APindex[index]][1] === 'A') {
-          return GPA = 5.0;
-        } else if(convertToLetter[APindex[index]][1] === 'A-') {
-          return GPA = 4.66;
-        } else if(convertToLetter[APindex[index]][1] === 'B+') {
-          return GPA = 4.33;
-        } else if(convertToLetter[APindex[index]][1] === 'B') {
-          return GPA = 4.0;
-        } else if(convertToLetter[APindex[index]][1] === 'B-') {
+      if(index = HONORSindex[index]) {
+        if (convertToLetter[HONORSindex[index]][1] === 'A') {
+          return GPA = 4.50;
+        } else if(convertToLetter[HONORSindex[index]][1] === 'A-') {
+          return GPA = 4.16;
+        } else if(convertToLetter[HONORSindex[index]][1] === 'B+') {
+          return GPA = 3.83;
+        } else if(convertToLetter[HONORSindex[index]][1] === 'B') {
+          return GPA = 3.50;
+        } else if(convertToLetter[HONORSindex[index]][1] === 'B-') {
+          return GPA = 3.16;
+        } else if(convertToLetter[HONORSindex[index]][1] === 'C+') {
+          return GPA = 2.88;
+        } else if(convertToLetter[HONORSindex[index]][1] === 'C') {
+          return GPA = 2.50;
+        } else if(convertToLetter[HONORSindex[index]][1] === 'C-') {
+          return GPA = 2.16;
+        } else if(convertToLetter[HONORSindex[index]][1] === 'D+') {
+          return GPA = 1.83;
+        } else if(convertToLetter[HONORSindex[index]][1] === 'D') {
+          return GPA = 1.50;
+        } else if(convertToLetter[HONORSindex[index]][1] === 'D-') {
+          return GPA = 1.16;
+        } else if(convertToLetter[HONORSindex[index]][1] === 'F') {
+          return GPA = 0;
+        }
+      }
+      if(index = CPindex[index]) {
+        if (convertToLetter[CPindex[index]][1] === 'A') {
+          return GPA = 4.00;
+        } else if(convertToLetter[CPindex[index]][1] === 'A-') {
           return GPA = 3.66;
-        } else if(convertToLetter[APindex[index]][1] === 'C+') {
+        } else if(convertToLetter[CPindex[index]][1] === 'B+') {
           return GPA = 3.33;
-        } else if(convertToLetter[APindex[index]][1] === 'C') {
-          return GPA = 3.0;
-        } else if(convertToLetter[APindex[index]][1] === 'C-') {
+        } else if(convertToLetter[CPindex[index]][1] === 'B') {
+          return GPA = 3.00;
+        } else if(convertToLetter[CPindex[index]][1] === 'B-') {
           return GPA = 2.66;
-        } else if(convertToLetter[APindex[index]][1] === 'D+') {
+        } else if(convertToLetter[CPindex[index]][1] === 'C+') {
           return GPA = 2.33;
-        } else if(convertToLetter[APindex[index]][1] === 'D') {
-          return GPA = 2.0;
-        } else if(convertToLetter[APindex[index]][1] === 'D-') {
+        } else if(convertToLetter[CPindex[index]][1] === 'C') {
+          return GPA = 2.00;
+        } else if(convertToLetter[CPindex[index]][1] === 'C-') {
           return GPA = 1.66;
-        } else if(convertToLetter[APindex[index]][1] === 'F') {
+        } else if(convertToLetter[CPindex[index]][1] === 'D+') {
+          return GPA = 1.33;
+        } else if(convertToLetter[CPindex[index]][1] === 'D') {
+          return GPA = 1.00;
+        } else if(convertToLetter[CPindex[index]][1] === 'D-') {
+          return GPA = 0.66;
+        } else if(convertToLetter[CPindex[index]][1] === 'F') {
           return GPA = 0;
         }
       }
     }
+    // if (i === 0) {
+    //   return GPA;
+    // }
   });
 });
 
