@@ -66,9 +66,27 @@ const convertToLetter = classGrades.map(function(grade) {
 
 console.log(convertToLetter);
 console.log(convertToLetter[0][1])
+const TTest2 = new Array();
 const APindex = new Array();
 const HONORSindex = new Array();
 const CPindex = new Array();
+
+const test = [0];
+
+
+for(let i = 0; i < convertToLetter.length; i += 1) {
+  console.log(i, convertToLetter[i][0]);
+  if(convertToLetter[i][0].toUpperCase() === "AP") {
+    console.log(i);
+    TTest2.push(i);
+    APindex.push(i);
+    test.push(i);
+  } else if(convertToLetter[i][0].toUpperCase() === "HONORS") {
+    HONORSindex.push(i);
+  } else if(convertToLetter[i][0].toUpperCase() === "CP") {
+    CPindex.push(i);
+  }
+}
 
 var a = -1;
 var b = -1;
@@ -83,20 +101,16 @@ const classGPA = convertToLetter.map(function(subarray, index) {
       console.log(index);
       if(GPA.toUpperCase() == "AP") {
         a += 1;
-        APindex.push(index);
       } else if(GPA.toUpperCase() == "HONORS") {
         b += 1;
-        HONORSindex.push(index);
       } else if(GPA.toUpperCase() == "CP") {
         c += 1;
-        CPindex.push(index);
       }
     }
     if (i === 1) {
       console.log(a);
       console.log(convertToLetter[0][1]);
       console.log(APindex);
-      console.log(APindex[a]);
       if (a >= 0) {
         console.log(a);
         console.log(index);
