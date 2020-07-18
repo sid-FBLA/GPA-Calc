@@ -66,21 +66,16 @@ const convertToLetter = classGrades.map(function(grade) {
 
 console.log(convertToLetter);
 console.log(convertToLetter[0][1])
-const TTest2 = new Array();
 const APindex = new Array();
 const HONORSindex = new Array();
 const CPindex = new Array();
 
-const test = [0];
 
 
 for(let i = 0; i < convertToLetter.length; i += 1) {
   console.log(i, convertToLetter[i][0]);
   if(convertToLetter[i][0].toUpperCase() === "AP") {
-    console.log(i);
-    TTest2.push(i);
     APindex.push(i);
-    test.push(i);
   } else if(convertToLetter[i][0].toUpperCase() === "HONORS") {
     HONORSindex.push(i);
   } else if(convertToLetter[i][0].toUpperCase() === "CP") {
@@ -114,7 +109,7 @@ const classGPA = convertToLetter.map(function(subarray, index) {
       if (a >= 0) {
         console.log(a);
         console.log(index);
-        if(APindex[a] = index) {
+        if(APindex[a] == index) {
           if (convertToLetter[APindex[a]][1] === 'A') {
             return GPA = 5.00;
           } else if(convertToLetter[APindex[a]][1] === 'A-') {
@@ -143,7 +138,7 @@ const classGPA = convertToLetter.map(function(subarray, index) {
         }
       }
       if (b >= 0) {
-        if(HONORSindex[b] = index) {
+        if(HONORSindex[b] == index) {
           if (convertToLetter[HONORSindex[b]][1] === 'A') {
             return GPA = 4.50;
           } else if(convertToLetter[HONORSindex[b]][1] === 'A-') {
@@ -172,7 +167,7 @@ const classGPA = convertToLetter.map(function(subarray, index) {
         }
       }
       if (c >= 0) {
-        if(CPindex[c] = index) {
+        if(CPindex[c] == index) {
           if (convertToLetter[CPindex[c]][1] === 'A') {
             return GPA = 4.00;
           } else if(convertToLetter[CPindex[c]][1] === 'A-') {
@@ -206,6 +201,7 @@ const classGPA = convertToLetter.map(function(subarray, index) {
     }
   });
 });
+
 console.log(a);
 console.log(APindex);
 console.log(b)
@@ -214,4 +210,22 @@ console.log(c);
 console.log(CPindex);
 console.log(APindex.length);
 
-console.log(classGPA)
+const weightedGrades = new Array();
+
+for(let i = 0; i < classGPA.length; i += 1) {
+  weightedGrades.push(classGPA[i][1]);
+}
+
+const totalGPA = weightedGrades.reduce(function(a, b) {
+  return a + b;
+});
+
+const finalWeightedGPA = Math.round((totalGPA/classGrades.length + Number.EPSILON) * 100)/100;
+
+console.log(classGPA);
+
+console.log(weightedGrades);
+
+console.log(totalGPA);
+
+console.log(finalWeightedGPA);
