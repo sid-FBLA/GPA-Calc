@@ -86,7 +86,7 @@ const classGPA = convertToLetter.map(function(subarray, index) {
     if (i === 1) {
       console.log(index);
       console.log(APindex[index]);
-      if(index = APindex[index]) {
+      if(index == APindex[index]) {
         console.log(convertToLetter[index][1]);
         if (convertToLetter[APindex[index]][1] === 'A') {
           return GPA = 5.00;
@@ -114,7 +114,7 @@ const classGPA = convertToLetter.map(function(subarray, index) {
           return GPA = 0;
         }
       }
-      if(index = HONORSindex[index]) {
+      if(index == HONORSindex[index]) {
         if (convertToLetter[HONORSindex[index]][1] === 'A') {
           return GPA = 4.50;
         } else if(convertToLetter[HONORSindex[index]][1] === 'A-') {
@@ -141,7 +141,7 @@ const classGPA = convertToLetter.map(function(subarray, index) {
           return GPA = 0;
         }
       }
-      if(index = CPindex[index]) {
+      if(index == CPindex[index]) {
         if (convertToLetter[CPindex[index]][1] === 'A') {
           return GPA = 4.00;
         } else if(convertToLetter[CPindex[index]][1] === 'A-') {
