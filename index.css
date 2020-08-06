@@ -15,6 +15,10 @@
   -webkit-transform: rotate(45deg);
 }
 
+.inline-block {
+  display: inline-block;
+}
+
 
 /*Editing the bootstrap top-bottom*/
 @media only screen and (min-width: 320px) {
@@ -61,12 +65,31 @@
     padding: 30px;
   }
 
-  @media only screen and (max-width: 1200px) {
+  .data {
+    margin: auto;
+    width: 80%;
+    padding: 1rem;
+    border: solid #CCCCCC;
+    border-radius: 5px;
+    border-width: 1px;
+  }
+
+  .data:hover {
+    transition: 150ms;
+    border-color: #10B3CC;
+  }
+
+  .data .btn {
+    background-color: #107AC2;
+    margin-top: 1rem;
+  }
+
+  @media only screen and (max-width: 1024px) {
     .jumbotron .container .animated-arrow:active .arrow {
       transition: 250ms;
       transform: rotate(225deg) translateY(-21px) translateX(-21px);
     }
-    
+
     .jumbotron .container .animated-arrow:hover .arrow {
       transition: 250ms;
       transform: rotate(225deg) translateY(-21px) translateX(-21px);
@@ -76,7 +99,13 @@
 }
 
 
-@media only screen and (min-width: 1200px) {
+@media only screen and (min-width: 1024px) {
+
+  .data {
+    margin: 0;
+    margin-left: 2rem;
+    width: 50%;
+  }
 
   .jumbotron .container .animated-arrow:hover {
     cursor: pointer;
@@ -89,4 +118,14 @@
     transition: 250ms;
     border-color: black;
   }
+
+}
+
+@media only screen and (min-width: 1440px) {
+
+  .data {
+    width: 35%;
+    margin-left: 12rem;
+  }
+
 }

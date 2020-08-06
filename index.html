@@ -17,7 +17,38 @@
       </div>
     </div>
   </div>
-  <div class="container-fluid">
+  <div class="container-sm">
+    <form class="data">
+      <div class="row">
+        <div class="col-sm-4">
+          <label for="class1Name">Class Name</label>
+          <input type="text" class="form-control is-valid" id="class1Name" value="Class 1" placeholder="Class Name">
+          <small id="classNameHelp" class="form-text text-muted">This field is optional</small>
+        </div>
+        <div class="col-sm-3">
+          <label for="class1Difficulty">Class Difficulty</label><br>
+          <select class="custom-select" id="class1Difficulty" placeholder="Difficulty" required>
+            <option value="1">CP</option>
+            <option value="2">HONORS</option>
+            <option value="3">AP</option>
+          </select>
+        </div>
+        <div class="col-sm-2">
+          <label for="class1Difficulty">Credits</label><br>
+          <select class="custom-select" id="class1Credits" placeholder="Credits" required>
+            <option value="1">5</option>
+            <option value="2">6</option>
+            <option value="3">2.5</option>
+          </select>
+        </div>
+        <div class="col-sm-3 inline-block">
+          <label for="class1Percentage">Percentage</label>
+          <input type="text" class="form-control" id="class1Percentage" id="validationDefault01" placeholder="%" required>
+          <p class="">%</p>
+        </div>
+      </div>
+      <button class="btn btn-primary" type="submit">Submit form</button>
+    </form>
   </div>
 </body>
 </html>
