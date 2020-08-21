@@ -92,6 +92,10 @@
     border-color: #10B3CC;
   }
 
+  .data h1 {
+    margin-top: 1rem;
+  }
+
   .data .row {
     margin-top: 1.5rem;
   }
@@ -134,6 +138,7 @@
   }
 
   .data .btn:nth-child(3) {
+    display: none;
     /* margin-left: 1.5rem;
     margin-right: 1.5rem; */
     margin-right: 1.5rem;
