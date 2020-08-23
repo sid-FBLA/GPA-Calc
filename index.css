@@ -94,6 +94,7 @@
 
   .data h1 {
     margin-top: 1rem;
+    margin-right: 1rem;
   }
 
   .data .row {
@@ -133,19 +134,16 @@
     margin-top: 1rem;
   }
 
-  .data .btn:nth-child(2) {
+  .data #add {
     margin-right: 1.5rem;
   }
 
-  .data .btn:nth-child(3) {
+  .data #remove {
     display: none;
-    /* margin-left: 1.5rem;
-    margin-right: 1.5rem; */
     margin-right: 1.5rem;
   }
 
-  .data .btn:nth-child(2),
-  .data .btn:nth-child(3) {
+  .data .circular {
     background-color: transparent;
     border: solid #107AC2;
     border-radius: 50%;
@@ -153,8 +151,7 @@
     padding: 1px  9px 1px 9px;
   }
 
-  .data .btn p:nth-child(1),
-  .data .btn p:nth-child(2) {
+  .data .circular p {
     margin-bottom: 0.25rem;
     font-weight: bold;
     font-size: 1rem;
@@ -162,18 +159,14 @@
     color: #107AC2;
   }
 
-  .data .btn:nth-child(2):hover,
-  .data .btn:nth-child(3):hover {
+  .data .circular:hover {
     background-color: #107AC2;
   }
 
-  .data .btn:nth-child(2):hover > p {
+  .data .circular:hover > p {
     color: white;
   }
 
-  .data .btn:nth-child(3):hover > p {
-    color: white;
-  }
 
   @media only screen and (max-width: 1024px) {
     .jumbotron .container .animated-arrow:active .arrow {

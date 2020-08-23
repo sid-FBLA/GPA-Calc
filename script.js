@@ -3,15 +3,17 @@ window.addEventListener('DOMContentLoaded', (event) => {
   console.log(document.querySelector('button'));
 
 
-  const extraInfo1 = document.querySelector("#extraInfo1");
-  const extraInfo2 = document.querySelector("#extraInfo2");
+  const extraInfo1 = document.querySelector('.extraInfo1');
+  const extraInfo2 = document.querySelector('.extraInfo2');
   const form = document.querySelector('form');
   const remove = document.querySelector('#remove');
+  const remove2 = document.querySelector('#remove2');
   const add = document.querySelector('#add');
   const row7 = document.querySelector('#appender');
   const rows = document.querySelectorAll('.row');
   const lastRow = rows[rows.length - 1];
   var lastRowClone = document.querySelector('#lastRow').cloneNode(true);
+  var lastRowClone2 = document.querySelector('#sem2lastRow').cloneNode(true);
 
   console.log(lastRowClone);
   console.log(lastRow);
@@ -22,6 +24,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
     existingNode.parentNode.insertBefore(newNode, existingNode.nextSibling);
   }
 
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
 
   extraInfo1.setAttribute('title', 'Semester = 2.5, Full Year = 5, Course With Lab = 6');
   extraInfo2.setAttribute('title', 'Must be written as a NUMBER')
@@ -30,19 +35,28 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
   console.log(lastRowHeight);
 
-  remove.addEventListener('click', function() {
-    setTimeout(function(){$('#lastRow').remove();}, 225)
-    $('#lastRow').animate({height: 0}, 250);
-    remove.style.display = 'none';
-    add.style.display = 'block';
-  });
+  remove.addEventListener('click', deleteRow(remove, '#lastRow'));
+  remove2.addEventListener('click', deleteRow(remove2, '#sem2lastRow'));
 
-  add.addEventListener('click', function() {
+  add.addEventListener('click', addRow(add, '#lastRow'));
+  add2.addEventListener('click', addRow(add2, '#sem2lastRow'));
+
+  function deleteRow(e, last) {
+    console.log(e);
+    setTimeout(function(){$(last).remove();}, 225)
+    $('#lastRow').animate({height: 0}, 250);
+    e.style.display = 'none';
+    e.nextElementSibling.style.display = 'block';
+  }
+
+  function addRow(e, last) {
+    console.log(e);
+    console.log(last);
     insertAfter(lastRowClone, row7);
-    $('#lastRow').height(0).animate({height: lastRowHeight}, 250);
-    add.style.display = 'none';
-    remove.style.display = 'block';
-  });
+    $(last).height(0).animate({height: lastRowHeight}, 250);
+    e.style.display = 'none';
+    e.previousElementSibling.style.display = 'block';
+  }
 
   let localStorageItemLength = localStorage.length/4;
   console.log(localStorageItemLength);
