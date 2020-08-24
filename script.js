@@ -127,6 +127,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
     let rows = document.querySelectorAll('.row');
     let storageLength = rows.length;
+    localStorage.setItem('storageLength', storageLength);
 
     formData('Difficulty', difficulty);
     formData('Credits', credits);
