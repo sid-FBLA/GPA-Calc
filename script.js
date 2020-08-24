@@ -3,8 +3,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
   console.log(document.querySelector('button'));
 
 
-  const extraInfo1 = document.querySelector('.extraInfo1');
-  const extraInfo2 = document.querySelector('.extraInfo2');
+  const extraInfo1 = document.querySelectorAll('.extraInfo1');
+  const extraInfo2 = document.querySelectorAll('.extraInfo2');
   const form = document.querySelector('form');
   const remove = document.querySelector('#remove');
   const remove2 = document.querySelector('#remove2');
@@ -14,11 +14,14 @@ window.addEventListener('DOMContentLoaded', (event) => {
   const lastRow = rows[rows.length - 1];
   var lastRowClone = document.querySelector('#lastRow').cloneNode(true);
   var lastRowClone2 = document.querySelector('#sem2lastRow').cloneNode(true);
+  const semester2 = document.querySelector('#semester2');
 
   console.log(lastRowClone);
   console.log(lastRow);
   console.log(extraInfo1);
   console.log(extraInfo2);
+
+  semester2.remove();
 
   function insertAfter(newNode, existingNode) {
     existingNode.parentNode.insertBefore(newNode, existingNode.nextSibling);
@@ -28,35 +31,56 @@ window.addEventListener('DOMContentLoaded', (event) => {
     $('[data-toggle="tooltip"]').tooltip()
   })
 
-  extraInfo1.setAttribute('title', 'Semester = 2.5, Full Year = 5, Course With Lab = 6');
-  extraInfo2.setAttribute('title', 'Must be written as a NUMBER')
-
+  for(let i = 0; i < extraInfo1.length; i += 1) {
+    extraInfo1[i].setAttribute('title', 'Semester = 2.5, Full Year = 5, Course With Lab = 6');
+    extraInfo2[i].setAttribute('title', 'Must be written as a NUMBER')
+  };
   const lastRowHeight = lastRow.offsetHeight;
 
   console.log(lastRowHeight);
 
-  remove.addEventListener('click', deleteRow(remove, '#lastRow'));
-  remove2.addEventListener('click', deleteRow(remove2, '#sem2lastRow'));
+  //remove.addEventListener('click', deleteRow(remove, '#lastRow'));
+  //remove2.addEventListener('click', deleteRow(remove2, '#sem2lastRow'));
 
-  add.addEventListener('click', addRow(add, '#lastRow'));
-  add2.addEventListener('click', addRow(add2, '#sem2lastRow'));
+  //add.addEventListener('click', addRow(add, '#lastRow'));
+  //add2.addEventListener('click', addRow(add2, '#sem2lastRow'));
+
+
 
   function deleteRow(e, last) {
+    console.log($(last));
     console.log(e);
     setTimeout(function(){$(last).remove();}, 225)
-    $('#lastRow').animate({height: 0}, 250);
+    $(last).animate({height: 0}, 250);
     e.style.display = 'none';
     e.nextElementSibling.style.display = 'block';
+  };
+
+  console.log(rows.length);
+
+  if(rows.length == 7) {
+    remove.style.display = 'none';
+    add.style.display = 'block'
+  }
+  if(rows.length == 8) {
+    console.log('hi');
+    add.style.display = 'none';
+    remove.style.display = 'block';
   }
 
-  function addRow(e, last) {
-    console.log(e);
-    console.log(last);
+  remove.addEventListener('click', function() {
+    setTimeout(function(){$('#lastRow').remove();}, 225)
+    $('#lastRow').animate({height: 0}, 250);
+    remove.style.display = 'none';
+    add.style.display = 'block';
+  })
+
+  add.addEventListener('click', function() {
     insertAfter(lastRowClone, row7);
-    $(last).height(0).animate({height: lastRowHeight}, 250);
-    e.style.display = 'none';
-    e.previousElementSibling.style.display = 'block';
-  }
+    $('#lastRow').height(0).animate({height: lastRowHeight}, 250);
+    add.style.display = 'none';
+    remove.style.display = 'block';
+  })
 
   let localStorageItemLength = localStorage.length/4;
   console.log(localStorageItemLength);
