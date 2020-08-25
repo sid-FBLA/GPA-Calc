@@ -94,6 +94,11 @@
 
   .data h1 {
     margin-top: 1rem;
+    margin-right: 1rem;
+  }
+
+  .header-button {
+    margin-bottom: 16;
   }
 
   .data .row {

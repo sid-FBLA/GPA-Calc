@@ -7,11 +7,18 @@ window.addEventListener('DOMContentLoaded', (event) => {
   const extraInfo2 = document.querySelector("#extraInfo2");
   const form = document.querySelector('form');
   const remove = document.querySelector('#remove');
+  const removeSemester = document.querySelector('#removeSemester')
   const add = document.querySelector('#add');
+  const addSemester = document.querySelector('#addSemester');
+  const semester = document.querySelector('#semester1');
   const row7 = document.querySelector('#appender');
   const rows = document.querySelectorAll('.row');
   const lastRow = rows[rows.length - 1];
   var lastRowClone = document.querySelector('#lastRow').cloneNode(true);
+  const semester2Original = document.querySelector('#semester2');
+  const semester2 = document.querySelector('#semester2').cloneNode(true);
+
+  semester2Original.remove();
 
   console.log(lastRowClone);
   console.log(lastRow);
@@ -26,9 +33,24 @@ window.addEventListener('DOMContentLoaded', (event) => {
   extraInfo1.setAttribute('title', 'Semester = 2.5, Full Year = 5, Course With Lab = 6');
   extraInfo2.setAttribute('title', 'Must be written as a NUMBER')
 
-  const lastRowHeight = lastRow.offsetHeight;
+  const lastRowHeight = row7.offsetHeight;
+  const semesterHeight = semester1.offsetHeight;
 
   console.log(lastRowHeight);
+//Refactor
+
+  removeSemester.addEventListener('click', function() {
+    console.log('hi');
+    setTimeout(function(){$('#semester2').remove();}, 225)
+    $('#semester2').animate({height: 0}, 225);
+  });
+
+  addSemester.addEventListener('click', function(e) {
+    console.log(e);
+    insertAfter(semester2, semester1);
+    $('#semester2').height(0).animate({height: semesterHeight}, 250);
+    addSemester.style.display = 'none';
+  })
 
   remove.addEventListener('click', function() {
     setTimeout(function(){$('#lastRow').remove();}, 225)
@@ -39,10 +61,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
   add.addEventListener('click', function() {
     insertAfter(lastRowClone, row7);
+    console.log(lastRowHeight);
     $('#lastRow').height(0).animate({height: lastRowHeight}, 250);
     add.style.display = 'none';
     remove.style.display = 'block';
   });
+
+//End Refactor
 
   let localStorageItemLength = localStorage.length/4;
   console.log(localStorageItemLength);
