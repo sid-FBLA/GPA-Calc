@@ -7,16 +7,20 @@ window.addEventListener('DOMContentLoaded', (event) => {
   const extraInfo2 = document.querySelector("#extraInfo2");
   const form = document.querySelector('form');
   const remove = document.querySelector('#remove');
-  const removeSemester = document.querySelector('#removeSemester')
+  const sem2Remove = document.querySelector('#sem2remove');
+  const removeSemester = document.querySelector('#removeSemester');
   const add = document.querySelector('#add');
+  const sem2Add = document.querySelector('#sem2add');
   const addSemester = document.querySelector('#addSemester');
   const semester = document.querySelector('#semester1');
   const row7 = document.querySelector('#appender');
-  const rows = document.querySelectorAll('.row');
+  let rows = document.querySelectorAll('.row');
   const lastRow = rows[rows.length - 1];
   var lastRowClone = document.querySelector('#lastRow').cloneNode(true);
   const semester2Original = document.querySelector('#semester2');
   const semester2 = document.querySelector('#semester2').cloneNode(true);
+  const sem2LastRow = document.querySelector('#sem2lastRow');
+  const sem2LastRowClone = document.querySelector('#sem2lastRow').cloneNode(true);
 
   semester2Original.remove();
 
@@ -37,6 +41,14 @@ window.addEventListener('DOMContentLoaded', (event) => {
   const semesterHeight = semester1.offsetHeight;
 
   console.log(lastRowHeight);
+
+  if(rows.length == 7) {
+    remove.style.display = 'none';
+    add.style.display = 'block';
+  } else {
+    add.style.display = 'none';
+    remove.style.display = 'block';
+  }
 //Refactor
 
   removeSemester.addEventListener('click', function() {
@@ -47,10 +59,24 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
   addSemester.addEventListener('click', function(e) {
     console.log(e);
+    let rows = document.querySelectorAll('.row');
     insertAfter(semester2, semester1);
     $('#semester2').height(0).animate({height: semesterHeight}, 250);
     addSemester.style.display = 'none';
-  })
+    preSelectOption('Difficulty');
+    preSelectOption('Credits');
+    preSelectValue('Name');
+    preSelectValue('Percentage');
+    if(rows.length == 7) {
+      semester2.offsetHeight = semester2.offsetHeight - sem2LastRow.offsetHeight;
+      console.log(rows.length);
+      setTimeout(function(){$('#sem2lastRow').remove();}, 225)
+      $('#sem2lastRow').height(0);
+      console.log($('#sem2lastRow'));
+      $('#sem2remove').css({display: 'none !important'});
+      $('#sem2add').css({display: 'block !important'});
+    }
+  });
 
   remove.addEventListener('click', function() {
     setTimeout(function(){$('#lastRow').remove();}, 225)
@@ -67,12 +93,19 @@ window.addEventListener('DOMContentLoaded', (event) => {
     remove.style.display = 'block';
   });
 
+  sem2Remove.addEventListener('click', function() {
+    setTimeout(function(){$('#sem2lastRow').remove();}, 25)
+    $('#sem2lastRow').animate({height: 0}, 50);
+    remove.style.display = 'none';
+    add.style.display = 'block';
+  })
+
 //End Refactor
 
   let localStorageItemLength = localStorage.length/4;
   console.log(localStorageItemLength);
 
-  if(localStorageItemLength === 7) {
+  if(localStorageItemLength == 7) {
     $('#lastRow').remove();
     remove.style.display = 'none';
     add.style.display = 'block';
@@ -86,14 +119,22 @@ window.addEventListener('DOMContentLoaded', (event) => {
       let option2 = localStorage.getItem(('#class' + classNumber + store)).toString();
       $('#class' + classNumber + store + ' option[value="' + option2 + '"]')
       .attr('selected', 'selected');
+      if(document.body.contains(semester2)) {
+        $('#sem2class' + classNumber + store + ' option[value="' + option2 + '"]')
+        .attr('selected', 'selected');
+      }
     }
   }
+
 
   function preSelectValue(store) {
     for(let i = 0; i < localStorageItemLength; i += 1) {
       let classNumber = String(i + 1);
       let option2 = localStorage.getItem(('#class' + classNumber + store));
       document.querySelector('#class' + classNumber + store).value = option2;
+      if(document.body.contains(semester2)) {
+        document.querySelector('#sem2class' + classNumber + store).value = option2;
+      }
     }
   }
 

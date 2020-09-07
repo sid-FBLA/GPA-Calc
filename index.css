@@ -143,9 +143,6 @@
   }
 
   .data .btn:nth-child(3) {
-    display: none;
-    /* margin-left: 1.5rem;
-    margin-right: 1.5rem; */
     margin-right: 1.5rem;
   }
 
@@ -178,6 +175,10 @@
 
   .data .btn:nth-child(3):hover > p {
     color: white;
+  }
+
+  #semester2 {
+    height: auto !important;
   }
 
   @media only screen and (max-width: 1024px) {
